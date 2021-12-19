@@ -1,0 +1,11 @@
+{
+  "text.renameit.color_changed": "Цвет изменен на '%s'",
+  "text.renameit.color_empty": "Ваша рука пуста, положите в нее предмет!",
+  "text.renameit.empty": "Ваша рука пуста, положите в нее предмет или блок!",
+  "text.renameit.lore_nolore": "У этого предмета нет подписей для изменения, сперва добавьте их!",
+  "text.renameit.lore_added": "Подпись с текстом '%s' была добавлена к предмету",
+  "text.renameit.lore_noline": "Такой линии не существует!",
+  "text.renameit.lore_line_changed": "Текст линии #%s был изменен на `%s`",
+  "text.renameit.lore_deleted": "Линия #%s была удалена",
+  "text.renameit.rename_changed": "Название предмета изменено на `%s`"
+}
