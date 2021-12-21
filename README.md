@@ -1,8 +1,5 @@
 ![logo](/src/main/resources/assets/renameit/icon.png)
-
-# RenameIt
-
-## Introduction
+# RenameIt 1.17
 
 This mod can be used only on server or client, it provides commands for changing item/block name, lore or color value.
 It also supports [PlaceholderAPI](https://placeholders.pb4.eu/user/mod-placeholders/)
