@@ -4,7 +4,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import me.lucko.fabric.api.permissions.v0.Permissions;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
@@ -15,7 +15,7 @@ import static net.minecraft.server.command.CommandManager.literal;
 
 public class RenameItCommand {
     public static void init() {
-        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+        CommandRegistrationCallback.EVENT.register((dispatcher, a, b) -> {
             dispatcher.register(registerWithName("renameit"));
             dispatcher.register(registerWithName("ri"));
         });
