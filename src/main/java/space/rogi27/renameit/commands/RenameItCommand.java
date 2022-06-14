@@ -9,6 +9,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.util.math.random.Random;
 
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
@@ -26,14 +27,14 @@ public class RenameItCommand {
                 .then(literal("name")
                         .requires(Permissions.require("renameit.name", 2))
                         .then(argument("name", StringArgumentType.string())
-                                .suggests((context, builder) -> builder.suggest("name").buildFuture())
+                                .suggests((context, builder) -> builder.suggest("\"cool <red>name</red>\"").buildFuture())
                                 .executes(RenameCommand::setName)
                         )
                 )
                 .then(literal("color")
                         .requires(Permissions.require("renameit.color", 2))
                         .then(argument("color", IntegerArgumentType.integer(0))
-                                .suggests((context, builder) -> builder.suggest("leather_color").buildFuture())
+                                .suggests((context, builder) -> builder.suggest(Random.create().nextBetween(1, 1000)).buildFuture())
                                 .executes(ColorCommand::setColor)
                         )
                 )
@@ -42,7 +43,7 @@ public class RenameItCommand {
                         .then(literal("add")
                                 .requires(Permissions.require("renameit.lore.add", 2))
                                 .then(argument("text", StringArgumentType.string())
-                                        .suggests((context, builder) -> builder.suggest("text").buildFuture())
+                                        .suggests((context, builder) -> builder.suggest("\"your <red>awesome</red> lore\"").buildFuture())
                                         .executes(LoreCommand::addLore)
                                 )
                         )
@@ -64,7 +65,7 @@ public class RenameItCommand {
                                             return builder.buildFuture();
                                         })
                                         .then(argument("text", StringArgumentType.string())
-                                                .suggests((context, builder) -> builder.suggest("text").buildFuture())
+                                                .suggests((context, builder) -> builder.suggest("\"your <red>awesome</red> lore\"").buildFuture())
                                                 .executes(LoreCommand::setLore)
                                         )
                                 )

@@ -2,6 +2,7 @@ package space.rogi27.renameit.commands;
 
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import eu.pb4.placeholders.api.TextParserUtils;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
@@ -20,7 +21,7 @@ public class LoreCommand {
                 context.getSource().sendFeedback(Text.translatable("text.renameit.empty").formatted(Formatting.YELLOW), false);
                 return 0;
             }
-            Text loreString = Text.literal(context.getArgument("text", String.class)).copyContentOnly().setStyle(Style.EMPTY.withItalic(false));
+            Text loreString = TextParserUtils.formatTextSafe(context.getArgument("text", String.class)).copy().setStyle(Style.EMPTY.withItalic(false));
             NbtCompound itemNbt = context.getSource().getPlayer().getMainHandStack().getOrCreateSubNbt("display");
 
             NbtList lore = new NbtList();
@@ -31,7 +32,7 @@ public class LoreCommand {
             lore.add(NbtString.of(Text.Serializer.toJson(loreString)));
             itemNbt.put("Lore", lore);
 
-            context.getSource().sendFeedback(Text.translatable("text.renameit.lore_added", loreString.copyContentOnly().formatted(Formatting.WHITE)).formatted(Formatting.GREEN), false);
+            context.getSource().sendFeedback(Text.translatable("text.renameit.lore_added", loreString.copy().formatted(Formatting.WHITE)).formatted(Formatting.GREEN), false);
             return 1;
         } else {
             return 0;
