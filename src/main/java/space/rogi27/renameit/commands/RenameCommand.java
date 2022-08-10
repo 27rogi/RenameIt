@@ -4,6 +4,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import eu.pb4.placeholders.api.TextParserUtils;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -20,7 +21,10 @@ public class RenameCommand {
                 context.getSource().getPlayer().getMainHandStack().removeCustomName();
                 return 1;
             }
-            Text itemNewName = TextParserUtils.formatTextSafe(name).copy().setStyle(Style.EMPTY.withItalic(false));
+
+            MutableText itemNewName = TextParserUtils.formatText(name).copy();
+            if (!itemNewName.getStyle().isItalic()) itemNewName = itemNewName.fillStyle(Style.EMPTY.withItalic(false));
+
             context.getSource().getPlayer().getMainHandStack().setCustomName(itemNewName);
             context.getSource().sendFeedback(Text.translatable("text.renameit.rename_changed", itemNewName.copy().formatted(Formatting.WHITE)).formatted(Formatting.GREEN), false);
             return 1;

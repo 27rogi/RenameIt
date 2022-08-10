@@ -8,6 +8,7 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.NbtString;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -21,7 +22,10 @@ public class LoreCommand {
                 context.getSource().sendFeedback(Text.translatable("text.renameit.empty").formatted(Formatting.YELLOW), false);
                 return 0;
             }
-            Text loreString = TextParserUtils.formatTextSafe(context.getArgument("text", String.class)).copy().setStyle(Style.EMPTY.withItalic(false));
+
+            MutableText loreString = TextParserUtils.formatTextSafe(context.getArgument("text", String.class)).copy();
+            if (!loreString.getStyle().isItalic()) loreString = loreString.fillStyle(Style.EMPTY.withItalic(false));
+            
             NbtCompound itemNbt = context.getSource().getPlayer().getMainHandStack().getOrCreateSubNbt("display");
 
             NbtList lore = new NbtList();
@@ -45,8 +49,10 @@ public class LoreCommand {
                 context.getSource().sendFeedback(Text.translatable("").formatted(Formatting.YELLOW), false);
                 return 0;
             }
-            Text loreString = Text.literal(context.getArgument("text", String.class)).copyContentOnly().setStyle(Style.EMPTY.withItalic(false));
             NbtCompound itemNbt = context.getSource().getPlayer().getMainHandStack().getSubNbt("display");
+
+            MutableText loreString = TextParserUtils.formatTextSafe(context.getArgument("text", String.class)).copy();
+            if (!loreString.getStyle().isItalic()) loreString = loreString.fillStyle(Style.EMPTY.withItalic(false));
 
             if (!itemNbt.contains("Lore")) {
                 context.getSource().sendFeedback(Text.translatable("text.renameit.lore_nolore").formatted(Formatting.YELLOW), false);

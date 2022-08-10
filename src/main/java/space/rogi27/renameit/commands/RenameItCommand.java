@@ -26,7 +26,7 @@ public class RenameItCommand {
         LiteralArgumentBuilder<ServerCommandSource> item = literal(name).requires(Permissions.require("renameit.use", true))
                 .then(literal("name")
                         .requires(Permissions.require("renameit.name", 2))
-                        .then(argument("name", StringArgumentType.string())
+                        .then(argument("name", StringArgumentType.greedyString())
                                 .suggests((context, builder) -> builder.suggest("\"cool <red>name</red>\"").buildFuture())
                                 .executes(RenameCommand::setName)
                         )
@@ -42,7 +42,7 @@ public class RenameItCommand {
                         .requires(Permissions.require("renameit.lore", 2))
                         .then(literal("add")
                                 .requires(Permissions.require("renameit.lore.add", 2))
-                                .then(argument("text", StringArgumentType.string())
+                                .then(argument("text", StringArgumentType.greedyString())
                                         .suggests((context, builder) -> builder.suggest("\"your <red>awesome</red> lore\"").buildFuture())
                                         .executes(LoreCommand::addLore)
                                 )
@@ -64,7 +64,7 @@ public class RenameItCommand {
                                             }
                                             return builder.buildFuture();
                                         })
-                                        .then(argument("text", StringArgumentType.string())
+                                        .then(argument("text", StringArgumentType.greedyString())
                                                 .suggests((context, builder) -> builder.suggest("\"your <red>awesome</red> lore\"").buildFuture())
                                                 .executes(LoreCommand::setLore)
                                         )
