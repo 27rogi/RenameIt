@@ -21,7 +21,7 @@ public class LoreCommand {
     public static int addLore(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         if (context.getSource().getEntity().isPlayer()) {
             if (context.getSource().getPlayer().getMainHandStack().isEmpty()) {
-                context.getSource().sendFeedback((Supplier<Text>) Text.translatable("text.renameit.empty").formatted(Formatting.YELLOW), false);
+                context.getSource().sendMessage(Text.translatable("text.renameit.empty").formatted(Formatting.YELLOW));
                 return 0;
             }
 
