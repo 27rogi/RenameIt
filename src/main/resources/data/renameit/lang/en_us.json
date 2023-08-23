@@ -5,7 +5,7 @@
   "text.renameit.lore_nolore": "This item has no lore to change, add some lines first!",
   "text.renameit.lore_added": "Lore with text '%s' was applied to item",
   "text.renameit.lore_noline": "This line doesn't exist!",
-  "text.renameit.lore_line_changed": "Line #%s text was changed to `%s`",
+  "text.renameit.lore_line_changed": "Line #%s text was changed to '%s'",
   "text.renameit.lore_deleted": "Line #%s was deleted",
-  "text.renameit.rename_changed": "Item name changed to `%s`"
+  "text.renameit.rename_changed": "Item name changed to '%s'"
 }
