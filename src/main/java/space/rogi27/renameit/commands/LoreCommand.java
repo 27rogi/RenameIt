@@ -13,8 +13,6 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
-import java.util.function.Supplier;
-
 // TODO: Move lore manipulations to another function
 public class LoreCommand {
 
