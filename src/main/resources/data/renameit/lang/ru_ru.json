@@ -7,5 +7,6 @@
   "text.renameit.lore_noline": "Такой линии не существует!",
   "text.renameit.lore_line_changed": "Текст линии #%s был изменен на '%s'",
   "text.renameit.lore_deleted": "Линия #%s была удалена",
-  "text.renameit.rename_changed": "Название предмета изменено на '%s'"
+  "text.renameit.rename_changed": "Название предмета изменено на '%s'",
+  "text.renameit.rename_reset": "Името на артикула е нулирано"
 }

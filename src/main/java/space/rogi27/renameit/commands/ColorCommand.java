@@ -2,7 +2,8 @@ package space.rogi27.renameit.commands;
 
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.DyedColorComponent;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -15,12 +16,11 @@ public class ColorCommand {
             }
 
             int color = context.getArgument("color", Integer.class);
-            NbtCompound itemNbt = context.getSource().getPlayer().getMainHandStack().getOrCreateSubNbt("display");
 
             if (color == 0) {
-                itemNbt.remove("color");
+                context.getSource().getPlayer().getMainHandStack().set(DataComponentTypes.DYED_COLOR, null);
             } else {
-                itemNbt.putInt("color", color);
+                context.getSource().getPlayer().getMainHandStack().set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(color, true));
             }
 
             context.getSource().sendMessage(Text.translatable("text.renameit.color_changed", Text.literal(String.valueOf(color)).formatted(Formatting.WHITE)).formatted(Formatting.GREEN));
